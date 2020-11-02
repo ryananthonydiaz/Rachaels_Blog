@@ -1,5 +1,5 @@
 ---
-title: 'Take Back Your Closet!'
+title: 'Closets in a whole new way!'
 date: '2020-10-01'
 ---
 

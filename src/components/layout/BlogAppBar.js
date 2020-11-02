@@ -9,7 +9,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import DynamicFeedOutlinedIcon from '@material-ui/icons/DynamicFeedOutlined';
 import MeetingRoomOutlinedIcon from '@material-ui/icons/MeetingRoomOutlined';
 import AllInboxOutlinedIcon from '@material-ui/icons/AllInboxOutlined';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
@@ -19,7 +18,6 @@ import Treeview from '../treeview';
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

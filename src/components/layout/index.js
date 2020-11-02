@@ -1,25 +1,16 @@
 import Head from 'next/head'
-import styles from './layout.module.css'
-// import utilStyles from '../../styles/utils.module.css'
 import Link from 'next/link'
-import { makeStyles } from '@material-ui/core/styles';
 import BlogAppBar from './BlogAppBar';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
+    overflowX: 'hidden'
+  }
 }));
 
-
-const name = 'Ryan Diaz'
-export const siteTitle = 'Next.js Sample Website'
+export const siteTitle = 'RVCH.DIVZ'
 
 export default function Layout({ children, home }) {
   const classes = useStyles();
@@ -40,13 +31,19 @@ export default function Layout({ children, home }) {
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+
       </Head>
       <header>
         <BlogAppBar />
       </header>
-      <main>{children}</main>
+      <main className={classes.root}>
+        <Grid justify="center" alignItems="center" container>
+          {children}
+        </Grid>
+      </main>
       {!home && (
-        <div className={styles.backToHome}>
+        <div>
           <Link href="/">
             <a>← Back to home</a>
           </Link>
