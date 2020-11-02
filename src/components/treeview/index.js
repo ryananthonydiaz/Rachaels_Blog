@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import Link from 'next/link'
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 
-export default function ControlledTreeView({ topic }) {
+export default function ControlledTreeView({ topic, posts }) {
   const [expanded, setExpanded] = useState([]);
   const [selected, setSelected] = useState([]);
-
+  console.log(posts)
   const handleToggle = (event, nodeIds) => {
     event.stopPropagation()
     setExpanded(nodeIds);
@@ -29,9 +29,13 @@ export default function ControlledTreeView({ topic }) {
       onNodeSelect={handleSelect}
     >
       <TreeItem nodeId="1" label={topic}>
-        <TreeItem nodeId="2" label="Calendar" onClick={() => alert('2')} />
-        <TreeItem nodeId="3" label="Chrome" onClick={() => alert('3')} />
-        <TreeItem nodeId="4" label="Webstorm" onClick={() => alert('4')} />
+        {
+          posts.map(({ id }, index) => (
+            <Link href="/posts/[id]" as={`/posts/${id}`}>
+              <a><TreeItem nodeId={index + 2} label="Calendar" /></a>
+            </Link>
+          ))
+        }
       </TreeItem>
     </TreeView>
   );

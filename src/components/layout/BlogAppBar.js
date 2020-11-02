@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
 import clsx from 'clsx';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
@@ -35,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DenseAppBar() {
+export default function DenseAppBar({ allPostsData }) {
   const classes = useStyles();
   const [state, setState] = useState({
     left: false
@@ -48,6 +47,34 @@ export default function DenseAppBar() {
 
     setState({ ...state, [anchor]: open });
   };
+
+  const closetPosts = [];
+  const pantryPosts = [];
+  const smallProjectsPosts = [];
+  const entireRoomsPosts = [];
+
+  if (allPostsData) {
+    allPostsData.forEach(({ id, date }) => {
+      const post = {}
+      if (id.includes('closets')) {
+        post.id = id;
+        post.date = date;
+        closetPosts.push(post)
+      } else if (id.includes('pantries')) {
+        post.id = id;
+        post.date = date;
+        pantryPosts.push(post)
+      } else if (id.includes('smallprojects')) {
+        post.id = id;
+        post.date = date;
+        smallProjectsPosts.push(post)
+      } else if (id.includes('entirerooms')) {
+        post.id = id;
+        post.date = date;
+        entireRoomsPosts.push(post);
+      }
+    })
+  }
 
   const list = (anchor) => (
     <div
@@ -62,30 +89,35 @@ export default function DenseAppBar() {
         {[
           {
             text:'Meet Rachael',
-            icon: <InfoOutlinedIcon />
+            icon: <InfoOutlinedIcon />,
+            posts: []
           },
           {
             text: 'Closets',
-            icon: <AllInboxOutlinedIcon />
+            icon: <AllInboxOutlinedIcon />,
+            posts: closetPosts,
           },
           {
             text: 'Pantries',
-            icon: <MeetingRoomOutlinedIcon />
+            icon: <MeetingRoomOutlinedIcon />,
+            posts: pantryPosts
           },
           {
             text: 'Small Projects',
-            icon: <BuildOutlinedIcon />
+            icon: <BuildOutlinedIcon />,
+            posts: smallProjectsPosts,
           },
           {
             text: 'Entire Rooms',
-            icon: <HomeOutlinedIcon />
+            icon: <HomeOutlinedIcon />,
+            posts: entireRoomsPosts,
           }
-        ].map(({ text, icon }) => (
+        ].map(({ text, icon, posts }) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {icon}
             </ListItemIcon>
-            <Treeview topic={text}  key={uuidv4()} />
+            <Treeview topic={text} posts={posts}  key={uuidv4()} />
           </ListItem>
         ))}
       </List>
@@ -94,7 +126,7 @@ export default function DenseAppBar() {
 
   return (
     <div>
-      <AppBar position="static">
+      <AppBar>
         <Toolbar variant="dense">
           <IconButton
             edge="start"

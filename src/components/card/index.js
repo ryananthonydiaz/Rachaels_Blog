@@ -10,7 +10,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    minWidth: 350,
     maxWidth: 500,
+    minHeight: 150,
     marginBottom: theme.spacing(2),
   },
   title: {
@@ -35,7 +37,7 @@ export default function SimpleCard({ data: { id, date, title } }) {
         </CardContent>
         <CardActions>
         <Link href={`/posts/${id}`}>
-            <a>lkajsdlkjasdlkfj</a>
+            <a>Read →</a>
         </Link>
         </CardActions>
       </Card>

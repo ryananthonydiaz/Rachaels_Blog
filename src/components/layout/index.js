@@ -6,13 +6,19 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    overflowX: 'hidden'
-  }
+    overflowX: 'hidden',
+    marginTop: theme.mixins.toolbar.minHeight,
+    marginBottom: theme.mixins.toolbar.minHeight,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.mixins.toolbar['@media (min-width:600px)'].minHeight,
+      marginBottom: theme.mixins.toolbar['@media (min-width:600px)'].minHeight,
+    }
+  },
 }));
 
 export const siteTitle = 'RVCH.DIVZ'
 
-export default function Layout({ children, home }) {
+export default function Layout({ allPostsData, children, home }) {
   const classes = useStyles();
 
   return (
@@ -35,7 +41,7 @@ export default function Layout({ children, home }) {
 
       </Head>
       <header>
-        <BlogAppBar />
+        <BlogAppBar allPostsData={allPostsData} />
       </header>
       <main className={classes.root}>
         <Grid justify="center" alignItems="center" container>

@@ -8,7 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    paddingTop: theme.spacing(2)
   }
 }));
 
@@ -16,7 +17,7 @@ export default function Home({ allPostsData }) {
   const classes = useStyles();
 
   return (
-    <Layout>
+    <Layout allPostsData={allPostsData}>
       <Grid item container alignItems="center" justify="center" className={classes.root}>
         {allPostsData.map(data => <Card key={uuidv4()} data={data} />)}
       </Grid>
