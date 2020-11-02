@@ -48,13 +48,6 @@ export default function Layout({ allPostsData, children, home }) {
           {children}
         </Grid>
       </main>
-      {!home && (
-        <div>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
-      )}
     </>
   )
 }

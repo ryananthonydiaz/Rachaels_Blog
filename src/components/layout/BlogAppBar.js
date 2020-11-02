@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import Link from 'next/link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -111,13 +112,27 @@ export default function DenseAppBar({ allPostsData }) {
             text: 'Entire Rooms',
             icon: <HomeOutlinedIcon />,
             posts: entireRoomsPosts,
+          },
+          {
+            text: 'Home',
+            icon: <HomeOutlinedIcon />,
           }
         ].map(({ text, icon, posts }) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {icon}
             </ListItemIcon>
-            <Treeview topic={text} posts={posts}  key={uuidv4()} />
+            {
+              text === 'Home' ?
+              (
+                <Link href="/">
+                  <a>{text}</a>
+                </Link>
+              ) :
+              (
+                <Treeview topic={text} posts={posts}  key={uuidv4()} />
+              )
+            }
           </ListItem>
         ))}
       </List>
